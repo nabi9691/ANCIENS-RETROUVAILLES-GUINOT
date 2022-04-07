@@ -561,6 +561,14 @@
     <service id="kernel" class="App\Kernel" public="true" synthetic="true">
       <tag name="routing.route_loader"/>
     </service>
+    <service id="App\Command\ImportUserCommand" class="App\Command\ImportUserCommand" autowire="true" autoconfigure="true">
+      <tag name="console.command"/>
+      <argument>null</argument>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <call method="setName">
+        <argument>app:import-user</argument>
+      </call>
+    </service>
     <service id="App\Controller\AdminsController" class="App\Controller\AdminsController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -5838,6 +5846,8 @@
       <argument type="service" id="vich_uploader.metadata_reader"/>
       <argument type="service" id="vich_uploader.upload_handler"/>
     </service>
+    <service id=".instanceof.Symfony\Component\Console\Command\Command.0.App\Command\ImportUserCommand" class="App\Command\ImportUserCommand" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Command\ImportUserCommand" class="App\Command\ImportUserCommand" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AdminsController" class="App\Controller\AdminsController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AdminsController" class="App\Controller\AdminsController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\AdminsController" class="App\Controller\AdminsController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6856,8 +6866,9 @@
     <service id=".errored..service_locator.30Q.gCU.App\Entity\Utilisateurs" class="App\Entity\Utilisateurs"/>
     <service id=".errored..service_locator.qNexqZf.App\Entity\Utilisateurs" class="App\Entity\Utilisateurs"/>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
-      <argument type="service" id=".service_locator.7ddKoov"/>
+      <argument type="service" id=".service_locator.8EWU7ZK"/>
       <argument type="collection">
+        <argument key="app:import-user">App\Command\ImportUserCommand</argument>
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
         <argument key="cache:clear">console.command.cache_clear</argument>
@@ -6952,9 +6963,10 @@
         <argument key="make:migration">maker.auto_command.make_migration</argument>
       </argument>
     </service>
-    <service id=".service_locator.7ddKoov" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.8EWU7ZK" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Command\ImportUserCommand" type="service_closure" id="App\Command\ImportUserCommand"/>
         <argument key="Doctrine\DBAL\Tools\Console\Command\RunSqlCommand" type="service_closure" id="Doctrine\DBAL\Tools\Console\Command\RunSqlCommand"/>
         <argument key="console.command.about" type="service_closure" id="console.command.about"/>
         <argument key="console.command.assets_install" type="service_closure" id="console.command.assets_install"/>

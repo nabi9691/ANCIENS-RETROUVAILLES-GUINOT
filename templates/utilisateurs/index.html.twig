@@ -38,53 +38,30 @@
 <tr>
 <th> Id </th>
 <th> Formation </th>
+<th> Civilité </th>
 <th> Nom </th>
 <th> Prénom </th>
-<th> Civilité </th>
-<th> Date de naissance </th>
-<th> Téléphone </th>
-<th> Email </th>
 <th>Adresse  </th>
 <th> Code Postal </th>
 <th> Ville </th>
-<th> Département </th>
-<th> Pays </th>
-<th>Status</th>
-<th> Role </th>
-<th>Modifier</th>
-<th>Afficher</th>
-<th>Supprimer</th>
+<th> Téléphone </th>
+<th> Email </th>
 </tr>
 </thead>
 <tbody>
 {% for utilisateur in utilisateur %}
+
 <tr>
 <td>{{ utilisateur.id }}</td>
 <td>{{ utilisateur.formation }}</td>
+<td>{{ utilisateur.civilite }}</td>
 <td>{{ utilisateur.nom|upper }}</td>
 <td>{{ utilisateur.prenom }}</td>
-<td>{{ utilisateur.civilite }}</td>
-<td>{{ utilisateur.dateDeNaissance|date("d/m/Y") }}</td>
-<td>{{ utilisateur.telephone }}</td>
-<td>{{ utilisateur.email }}</td>
 <td>{{ utilisateur.adresse }}</td>
 <td>{{ utilisateur.codePostal }}</td>
 <td>{{ utilisateur.ville }}</td>
-<td>{{ utilisateur.departement }}</td>
-<td>{{ utilisateur.pays }}</td>
-<td>{{ utilisateur.status }}</td>
-{#<td>{{ utilisateur.medias.length() }}</td>#}
-
-{# affichage du role de l'utilisateur #}
-<td>
-{% for role in utilisateur.roles %}
-{{ role }}
-{% endfor %}
-</td>
-
-<td><a href="{{ path('modifierUtilisateur_index', {'id': utilisateur.id }) }}">Modifier</a></td>
-<td><a href="{{ path('afficherUtilisateur_index', {'id': utilisateur.id }) }}">afficher</a></td>
-<td><a href="{{ path('supprimerUtilisateur_index', {'id': utilisateur.id }) }}">Supprimer</a></td>
+<td>{{ utilisateur.telephone }}</td>
+<td>{{ utilisateur.email }}</td>
 </tr>
 
 {% else %}
@@ -94,6 +71,7 @@ Vouss n'avez pas d'enregistrement!
 </td>
 </tr>
 {% endfor %}
+
 </tbody>
 </table>
 </div>
