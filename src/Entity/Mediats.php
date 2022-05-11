@@ -42,13 +42,21 @@ class Mediats
      */
     private $date;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Utilisateurs::class, inversedBy="medias")
-     * @ORM\JoinColumn(nullable=false)
+/**
+     * @ORM\Column(type="string", length=255)
      */
-    private $utilisateurs;
+    private $status;
 
-    
+/**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $categories;
+
+/**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $auteurs;
+
 
     public function __construct(){
         $this->date = new \DateTime();
@@ -111,17 +119,43 @@ class Mediats
         return $this->imageFile;
     }
 
-    public function getUtilisateurs(): ?Utilisateurs
+    public function getStatus(): ?string
     {
-        return $this->utilisateurs;
+        return $this->status;
     }
 
-    public function setUtilisateurs(?Utilisateurs $utilisateurs): self
+    public function setStatus(string $status): self
     {
-        $this->utilisateurs = $utilisateurs;
+        $this->status = $status;
 
         return $this;
     }
 
+    public function getCategories(): ?string
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(string $categories): self
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    public function getAuteurs(): ?string
+    {
+        return $this->auteurs;
+    }
+
+    public function setAuteurs(string $auteurs): self
+    {
+        $this->auteurs = $auteurs;
+
+        return $this;
+    }
+
+
+    
        }
 

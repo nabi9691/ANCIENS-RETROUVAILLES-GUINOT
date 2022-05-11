@@ -55,13 +55,13 @@ class Messages
      * @ORM\ManyToOne(targetEntity=Utilisateurs::class, inversedBy="message_envoyer")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $expediteur;
+    private $expediteur = 0;
 
     /**
      * @ORM\ManyToOne(targetEntity=Utilisateurs::class, inversedBy="message_reçu")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $destinataire;
+    private $destinataire = 0;
     
     public function __construct()
     {

@@ -626,6 +626,15 @@
         <argument type="service" id=".service_locator.vdmMuyE.App\Controller\UtilisateursController"/>
       </call>
     </service>
+    <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
+      <tag name="doctrine.fixture.orm"/>
+    </service>
+    <service id="App\DataFixtures\ContactsFixtures" class="App\DataFixtures\ContactsFixtures" autowire="true" autoconfigure="true">
+      <tag name="doctrine.fixture.orm"/>
+    </service>
+    <service id="App\DataFixtures\MediatsFixtures" class="App\DataFixtures\MediatsFixtures" autowire="true" autoconfigure="true">
+      <tag name="doctrine.fixture.orm"/>
+    </service>
     <service id="App\Form\ContactsType" class="App\Form\ContactsType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -5502,7 +5511,20 @@
     <service id="doctrine.fixtures.loader" class="Doctrine\Bundle\FixturesBundle\Loader\SymfonyFixturesLoader" public="false">
       <argument type="service" id="service_container"/>
       <call method="addFixtures">
-        <argument type="collection"/>
+        <argument type="collection">
+          <argument type="collection">
+            <argument key="fixture" type="service" id="App\DataFixtures\AppFixtures"/>
+            <argument key="groups" type="collection"/>
+          </argument>
+          <argument type="collection">
+            <argument key="fixture" type="service" id="App\DataFixtures\ContactsFixtures"/>
+            <argument key="groups" type="collection"/>
+          </argument>
+          <argument type="collection">
+            <argument key="fixture" type="service" id="App\DataFixtures\MediatsFixtures"/>
+            <argument key="groups" type="collection"/>
+          </argument>
+        </argument>
       </call>
     </service>
     <service id="doctrine.fixtures.purger.orm_purger_factory" class="Doctrine\Bundle\FixturesBundle\Purger\ORMPurgerFactory" public="false">
@@ -5872,6 +5894,12 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\UtilisateursController" class="App\Controller\UtilisateursController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\UtilisateursController" class="App\Controller\UtilisateursController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\UtilisateursController" class="App\Controller\UtilisateursController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\ContactsFixtures" class="App\DataFixtures\ContactsFixtures" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\DataFixtures\ContactsFixtures" class="App\DataFixtures\ContactsFixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\MediatsFixtures" class="App\DataFixtures\MediatsFixtures" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\DataFixtures\MediatsFixtures" class="App\DataFixtures\MediatsFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ContactsType" class="App\Form\ContactsType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ContactsType" class="App\Form\ContactsType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\MediatsType" class="App\Form\MediatsType" autowire="true" abstract="true"/>
