@@ -31,9 +31,9 @@ class UtilisateursController extends AbstractController
     }
 
 /**
-     * @Route("/rechercheUtilisateur/{id}", name="rechercheUtilisateur_index", methods={"GET","POST"})
+     * @Route("/recherchesUtilisateur/{id}", name="recherchesUtilisateur_index", methods={"GET","POST"})
      */
-    public function rechercheUtilisateur(UtilisateursRepository $utilisateursRepository): Response
+    public function recherchesUtilisateur(UtilisateursRepository $utilisateursRepository): Response
     {
         $utilisateurs = $utilisateursRepository-> findByUtilisateursCivilite();
     return $this->render('utilisateurs/rechercheUtilisateur.html.twig', [
@@ -157,7 +157,7 @@ class UtilisateursController extends AbstractController
     }
 
 /**
-     * @Route("/abonner", name="pageAccueilEspacePerso_index")
+     * @Route("/espacePersonnel", name="pageAccueilEspacePerso_index")
      */
     public function pageAccueilEspacePersonnel(): Response
     {

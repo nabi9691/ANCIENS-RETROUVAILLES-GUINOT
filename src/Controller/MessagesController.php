@@ -77,7 +77,7 @@ class MessagesController extends AbstractController
     }
 
     /**
-     * @Route("/afficherMessage/{id}", name="afficherMessage_index", methods={"GET"})
+     * @Route("/afficherMessages/{id}", name="afficherMessage_index", methods={"GET"})
      */
     public function afficherMessage(Messages $messages): Response
     {
@@ -167,7 +167,7 @@ class MessagesController extends AbstractController
     /**
      * @Route("/messagesLu/{id}", name="messagesLu_index")
      */
-    public function messageLu(Messages $messages): Response
+    public function messagesLu(Messages $messages): Response
     {
         $messages->setSiMessageLu(true);
 

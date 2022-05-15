@@ -44,7 +44,7 @@ class RegistrationController extends AbstractController
             if ($medias) {
                 $entityManager->persist($medias);
                 
-                $user->addMedia($medias);
+                //$user->addMedia($medias);
             }
 
             // encode the password
@@ -59,11 +59,12 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // generate a signed url and email it to the user
+// générer une URL signée et l'envoyer par e-mail à l'utilisateur
             $this->emailVerifier->sendEmailConfirmation(
                 'app_verify_email',
                 $user,
                 (new TemplatedEmail())
-                    ->from(new Address('nabiabib31@gmail.com', 'Administrateur du site retrouvaille anciens amis'))
+                    ->from(new Address('nabiabib31@gmail.com', 'Administrateur du site retrouvaille anciens stagiaires Guinot'))
                     ->to($user->getLogin())
                     ->subject('Veuillez confirmer votre email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
@@ -77,8 +78,6 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-
-    
     /**
      * @Route("/register-admin", name="app_register_admin")
      */
@@ -106,7 +105,7 @@ class RegistrationController extends AbstractController
                 'app_verify_email',
                 $user,
                 (new TemplatedEmail())
-                    ->from(new Address('ndao6516@gmail.com', 'Administrateur du site retrouvaille anciens amis'))
+                    ->from(new Address('nabiabib31@gmail.com', 'Administrateur du site retrouvaille anciens stagiaires Guinot'))
                     ->to($user->getLogin())
                     ->subject('Veuillez confirmer votre email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
@@ -188,10 +187,6 @@ class RegistrationController extends AbstractController
 
         return $this->redirectToRoute('app_login');
     }
-
-
-
-
 
 
 

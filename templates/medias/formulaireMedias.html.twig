@@ -1,0 +1,18 @@
+
+    
+{{ form_start(formMedias) }}
+
+Titre: {{ form_widget(formMedias.imageFile) }}<br>
+Contenu: {{ form_widget(formMedias.contenu) }} <br>
+Date: {{ form_widget(formMedias.date) }} <br>
+Status: {{ form_widget(formMedias.status) }} <br>
+Catégories: {{ form_widget(formMedias.categories) }} <br>
+Auteurs: {{ form_widget(formMedias.auteurs) }} <br>
+
+
+
+<button type="submit" class="btn btn-success">envoyer</button>
+
+
+      
+    {{ form_end(formMedias) }}

@@ -61,7 +61,7 @@ class ImportUserCommand extends Command
             ->setPrenom($row[4] ?? ';')
             ->setAdresse($row[5] ?? ';')
             ->setCodePostal($row[6] ?? ';')
-            ->setVille($row[7] ?? ';')
+            ->setVilles($row[7] ?? ';')
             ->setTelephone($row[8] ?? ';')
             ->setEmail($row[9] ?? ';')
             ->setLogin($row[9] ?? ';')

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+ Enregistrement d'un médias :
+ {% endblock %}
+
+{% block content %}
+ <br> <br>
+ 
+    <h1> Enregistrement d'un médias : </h1>
+
+    {{ include('medias/formulaireMedias.html.twig') }}<br>
+
+    <a href="{{ path('medias_index') }}">Liste des médias :</a><br>
+
+
+{% endblock %}

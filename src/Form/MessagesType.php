@@ -22,8 +22,6 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
-
-
 class MessagesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -43,18 +41,13 @@ class MessagesType extends AbstractType
             'required' => false
         ])
         
-
-        ->add('resume', TextType::class, [
-            'label' => 'Le résumé de votre message :',
-            'required' => false
-        ])
-        
         ->add('createdAt', BirthdayType::class, [
             'label' => 'Date cr"ation du message :',
             'required' => false,
             'widget' => 'single_text'
         ])
-;
+
+        ;
         }
 
     public function configureOptions(OptionsResolver $resolver): void

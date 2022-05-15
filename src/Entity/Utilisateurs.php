@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Messages;
+//use App\Entity\Utilisateurs;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use App\Repository\UtilisateursRepository;
@@ -30,14 +32,10 @@ class Utilisateurs implements UserInterface
      */
     private $id;
 
-
-
-
 /**
      * @ORM\Column(type="string", length=255)
      */
     private $formation;
-
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -72,7 +70,7 @@ class Utilisateurs implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $ville;
+    private $villes;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -133,25 +131,20 @@ class Utilisateurs implements UserInterface
      */
     private $isVerified = false;
 
-    
-    
-
     /**
      * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="expediteur", orphanRemoval=true)
      */
-    private $message_envoyer;
+    private $messages_envoyer;
 
     /**
      * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="destinataire", orphanRemoval=true)
      */
-    private $message_reçu;
+    private $messages_reçu;
 
     /**
-     * @ORM\OneToMany(targetEntity=Mediats::class, mappedBy="utilisateurs", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Medias::class, mappedBy="utilisateurs")
      */
     private $medias;
-
-    
 
     public function __construct()
     {
@@ -282,9 +275,6 @@ class Utilisateurs implements UserInterface
         return $this;
     }
 
-
-
-
     public function getNom(): ?string
     {
         return $this->nom;
@@ -345,14 +335,14 @@ class Utilisateurs implements UserInterface
         return $this;
     }
 
-    public function getVille(): ?string
+    public function getVilles(): ?string
     {
-        return $this->ville;
+            return $this->villes;
     }
 
-    public function setVille(string $ville): self
+    public function setVilles(string $villes): self
     {
-        $this->ville = $ville;
+        $this->villes = $villes;
 
         return $this;
     }
@@ -429,8 +419,6 @@ class Utilisateurs implements UserInterface
         return $this;
     }
 
-    
-
     /**
      * @return Collection<int, Messages>
      */
@@ -453,6 +441,7 @@ class Utilisateurs implements UserInterface
     {
         if ($this->message_envoyer->removeElement($messageEnvoyer)) {
             // set the owning side to null (unless already changed)
+// définir le côté propriétaire sur null (sauf si déjà modifié)
             if ($messageEnvoyer->getExpediteur() === $this) {
                 $messageEnvoyer->setExpediteur(null);
             }
@@ -492,14 +481,14 @@ class Utilisateurs implements UserInterface
     }
 
     /**
-     * @return Collection<int, Mediats>
+     * @return Collection<int, Medias>
      */
     public function getMedias(): Collection
     {
         return $this->medias;
     }
 
-    public function addMedia(Mediats $media): self
+    public function addMedia(Medias $media): self
     {
         if (!$this->medias->contains($media)) {
             $this->medias[] = $media;
@@ -509,7 +498,7 @@ class Utilisateurs implements UserInterface
         return $this;
     }
 
-    public function removeMedia(Mediats $media): self
+    public function removeMedia(Medias $media): self
     {
         if ($this->medias->removeElement($media)) {
             // set the owning side to null (unless already changed)
@@ -521,7 +510,6 @@ class Utilisateurs implements UserInterface
         return $this;
     }
 
-
-
+    
 
 }

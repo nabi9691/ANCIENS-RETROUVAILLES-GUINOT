@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Liste des médias : 
+ {% endblock %}
+
+{% block body %}
+
+{% block content %}
+<div>
+    <h1>
+     bienvenu(e) !
+     Liste des médias :
+     </h1>
+
+    <br /><br />
+    <hr />
+    <br />
+    <a href="{{ path('nouveauMedias_index') }}">Ajouter Un Nouveau Médias ! </a>
+<br /><br />
+    
+    
+    <table border="1">
+            
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th> Titre </th>
+                    <th> Contenu </th>
+                    <th> Date </th>
+                    <th> Status </th>
+                    <th> Catégories </th>
+<th> Auteur </th>
+                    <th> utilisateur </th>
+                <th> Modifier </th>
+<th> Afficher </th>
+<th> Supprimer </t  h>
+</tr>
+            </thead>
+            {% for medias in medias %}
+<tbody>
+        <tr>
+                <td> {{ medias.id }} </td>
+                <td> {{ medias.imageName }} </td>
+                <td> {{ medias.contenu }} </td>
+                <td> {{ medias.date|date("d/m/Y") }} </td>
+<td> {{ medias.status }} </td>
+<td> {{ medias.categories }} </td>
+                <td> {{ medias.auteurs }} </td>
+<td> {{ medias.utilisateurs }} </td>
+<td><a href="{{ path('modifierMedias_index', {'id': medias.id }) }}">Modifier</a></td>
+<td><a href="{{ path('afficherMedias_index', {'id': medias.id }) }}">afficher</a></td>
+<td><a href="{{ path('supprimerMedias_index', {'id': medias.id }) }}">Supprimer</a></td>
+                {% else %}
+                <td colspan="5">
+                    Vous n'avez pas de médias enregistré dans votre base de données !
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
+
+<br/><br/>
+
+{% block footer %}
+{% endblock %}
+
+{% endblock %}

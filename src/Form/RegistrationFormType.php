@@ -51,7 +51,7 @@ class RegistrationFormType extends AbstractType
                 'required' => true
             ])
             
-            ->add('ville', TextType::class, [
+            ->add('villes', TextType::class, [
                 'label' => 'Votre ville :',
                 'required' => true
             ])
@@ -59,7 +59,7 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Votre téléphone :',
                 'required' => true
             ])
-            
+                        
             ->add('login', TextType::class, [
                 'label' => 'Votre login',
                 'required' => true
@@ -77,10 +77,12 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ]
             ])
-            ->add('media', MediatsType::class, [
+            ->add('media', MediasType::class, [
                 'mapped' => false,
                 'by_reference' => false,
             ])
+
+
             // ->add('confirmepassword', PasswordType::class, [
                 // 'mapped' => false,
             //     'required' => true,
@@ -108,6 +110,8 @@ class RegistrationFormType extends AbstractType
             // ])
         ;
     }
+
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {

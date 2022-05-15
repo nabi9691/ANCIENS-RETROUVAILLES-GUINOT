@@ -23,19 +23,36 @@ Veuillez vous inscrire
     {{ form_start(registrationForm) }}
 
         <div>
+            {{ form_errors(registrationForm.formation) }}
             {{ form_errors(registrationForm.civilite) }}
             {{ form_errors(registrationForm.nom) }}
             {{ form_errors(registrationForm.prenom) }}
+            {{ form_errors(registrationForm.adresse) }}
+            {{ form_errors(registrationForm.villes) }}
+            {{ form_errors(registrationForm.telephone) }}
             {{ form_errors(registrationForm.login) }}
             {{ form_errors(registrationForm.password) }}
-        </div>
+        {{ form_errors(registrationForm.media) }}
+            </div>
 
-    {{ form_row(registrationForm.civilite) }}
+
+    {{ form_row(registrationForm.formation) }}
+{{ form_row(registrationForm.civilite) }}
     {{ form_row(registrationForm.nom) }}
     {{ form_row(registrationForm.prenom) }}
-    {{ form_row(registrationForm.login) }}
+{{ form_row(registrationForm.adresse) }}
+{{ form_row(registrationForm.villes) }}
+{{ form_row(registrationForm.telephone) }}
+{{ form_row(registrationForm.login) }}
     {{ form_row(registrationForm.password) }}
+{{ form_row(registrationForm.media) }}
+
+
 
     <button type="submit" class="btn"> S'inscrire </button>
+    
+    
     {{ form_end(registrationForm) }}
+
+
 {% endblock %}

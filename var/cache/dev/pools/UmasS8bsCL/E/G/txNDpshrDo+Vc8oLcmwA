@@ -14,9 +14,6 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             'inversedBy' => [
                 'message_reçu',
             ],
-            'nullable' => [
-                1 => false,
-            ],
         ],
     ],
     [

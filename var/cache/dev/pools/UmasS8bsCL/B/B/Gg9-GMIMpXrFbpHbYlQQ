@@ -11,10 +11,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 'utilisateurs',
             ],
             'targetEntity' => [
-                'App\\Entity\\Mediats',
-            ],
-            'orphanRemoval' => [
-                true,
+                'App\\Entity\\Medias',
             ],
         ],
     ],
