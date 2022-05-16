@@ -43,15 +43,11 @@ class UtilisateursUniTest extends TestCase
     $this->assertTrue($utilisateurs->getEmail()==='email'); 
     $this->assertTrue($utilisateurs->getLogin()==='login'); 
     $this->assertTrue($utilisateurs->getPassword()==='password'); 
-    $this->assertTrue($utilisateurs->getMessageEnvoyer()==='messages-envoyer'); 
-    $this->assertTrue($utilisateurs->getMessageReçu()==='messages-reçu'); 
-    
-   
-  }
+    }
 
-  public function testVide(): void {
-      
-    $dateTime = New DateTimeImmutable();
+  public function testVide(): void 
+  {
+      $dateTime = New DateTimeImmutable();
     
     $utilisateurs = New Utilisateurs(); 
 
@@ -67,11 +63,7 @@ class UtilisateursUniTest extends TestCase
         $this->assertEmpty($utilisateurs->getEmail());
         $this->assertEmpty($utilisateurs->getLogin());
         $this->assertEmpty($utilisateurs->getPassword());
-        $this->assertEmpty($utilisateurs->getMessageEnvoyer());
-        $this->assertEmpty($utilisateurs->getMessageReçu());
-    
-    
-  }
+        }
 
      public function testNouveauModifSupprAffMessages()
      {
@@ -99,11 +91,13 @@ $this->assertEmpty($utilisateurs->getMessageEnvoyer());
         $utilisateurs = new Utilisateurs();
                 $medias = new Medias();
      
+                $this->assertEmpty($utilisateurs->getMedias());
+    
         $utilisateurs->addMedia($medias);
         $this->assertContains($medias, $utilisateurs->getMedias());
+
         $utilisateurs->removeMedia($medias);
         $this->assertEmpty($utilisateurs->getMedias());
-        $this->assertEmpty($utilisateurs->getMedias());
-    }
+        }
   }
       

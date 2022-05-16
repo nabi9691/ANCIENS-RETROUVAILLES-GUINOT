@@ -62,6 +62,12 @@ class Medias
      */
     private $utilisateurs;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Messages::class, inversedBy="medias")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $messages;
+
 
     public function __construct(){
         $this->date = new \DateTime();
@@ -168,6 +174,18 @@ class Medias
     public function setUtilisateurs(?Utilisateurs $utilisateurs): self
     {
         $this->utilisateurs = $utilisateurs;
+
+        return $this;
+    }
+
+    public function getMessages(): ?Messages
+    {
+        return $this->messages;
+    }
+
+    public function setMessages(?Messages $messages): self
+    {
+        $this->messages = $messages;
 
         return $this;
     }

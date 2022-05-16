@@ -62,11 +62,17 @@ class Messages
      * @ORM\JoinColumn(nullable=true)
      */
     private $destinataire;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Medias::class, mappedBy="messages")
+     */
+    private $medias;
     
     public function __construct()
     {
         $this->creer_date = new 
         \DateTime();
+        $this->medias = new ArrayCollection();
         }
 
     public function getId       (): ?int
@@ -154,6 +160,36 @@ class Messages
     public function setDestinataire(?Utilisateurs $destinataire): self
     {
         $this->destinataire = $destinataire;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Medias>
+     */
+    public function getMedias(): Collection
+    {
+        return $this->medias;
+    }
+
+    public function addMedia(Medias $media): self
+    {
+        if (!$this->medias->contains($media)) {
+            $this->medias[] = $media;
+            $media->setMessages($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedia(Medias $media): self
+    {
+        if ($this->medias->removeElement($media)) {
+            // set the owning side to null (unless already changed)
+            if ($media->getMessages() === $this) {
+                $media->setMessages(null);
+            }
+        }
 
         return $this;
     }

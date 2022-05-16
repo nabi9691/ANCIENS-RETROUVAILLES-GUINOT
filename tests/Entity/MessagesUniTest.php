@@ -55,19 +55,34 @@ class MessagesUniTest extends TestCase
              $this->assertEmpty($messages->getExpediteur());
              $this->assertEmpty($messages->getDestinataire());
      
-             $utilisateurs->addExpediteur($expediteur);
-             $utilisateurs->addDestinataire($destinataire);
+             $messages->addExpediteur($utilisateurs);
+             $messages->addDestinataire($utilisateurs);
              
-             $this->assertContains($expediteur, $utilisateurs->getExpediteur());
-             $this->assertContains($expediteur, $utilisateurs->getDestinataire());
+             $this->assertContains($utilisateurs, $messages->getExpediteur());
+             $this->assertContains($utilisateurs, $messages->getDestinataire());
      
-             $utilisateurs->removeExpediteur($expediteur);
-             $utilisateurs->removeDestinataire($destinataire);
+             $messages->removeExpediteur($utilisateurs);
+             $messages->removeDestinataire($utilisateurs);
              
-             $this->assertEmpty($utilisateurs->getMessageEnvoyer());
-             $this->assertEmpty($utilisateurs->getMessageReçu());
-             $this->assertEmpty($utilisateurs->getMedias());
+             $this->assertEmpty($messages->getExpediteur());
+             $this->assertEmpty($messages->getDestinataire());
                 }       
+            
+                public function testNouveauModifSupprAffMedias()
+                {
+                  $messages = new Messages();
+                          $medias = new Medias();
+               
+                          $this->assertEmpty($messages->getMedias());
+              
+                  $messages->addMedia($medias);
+                  $this->assertContains($medias, $messages->getMedias());
+          
+                  $messages->removeMedia($medias);
+                  $this->assertEmpty($messages->getMedias());
+                  }
+            }    
+            
             }    
             }
             

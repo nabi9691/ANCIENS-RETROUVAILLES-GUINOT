@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Medias;
 use App\Entity\Utilisateurs;
+use App\Entity\Messages;
 
 use Faker; 
 use Faker\Factory;
@@ -35,7 +36,8 @@ $medias
             ->setStatus($status[0])
             ->setCategories($categories[0])
 ->setAuteurs($faker->lastName);
-            //->setUtilisateurs($utilisateurs);
+//->setMessages($messages);            
+//->setUtilisateurs($utilisateurs);
             
                         $manager->persist($medias);
     
