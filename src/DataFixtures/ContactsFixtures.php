@@ -38,6 +38,7 @@ $email = $faker->email;
             $contacts
                             ->setNom($faker->lastName)
                 ->setPrenom($faker->firstName)
+                ->setResume($faker->firstName)
         ->setDate(new \DateTime())
         ->setCivilite($civilite[0])
         ->setTelephone($faker->phoneNumber)

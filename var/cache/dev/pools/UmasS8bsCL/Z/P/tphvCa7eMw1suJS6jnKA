@@ -1,0 +1,47 @@
+<?php //App%255CEntity%255CContacts%2524resume
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\Length'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\Length')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'type' => [
+                'string',
+            ],
+            'length' => [
+                255,
+            ],
+            'precision' => [
+                null,
+            ],
+            'scale' => [
+                null,
+            ],
+            'maxMessage' => [
+                1 => 'Votre resumé ne doit pas depasser {{ limit }} characteres',
+            ],
+            'minMessage' => [
+                1 => 'Le resumé doit avoir 1 minimum de {{ limit }} characteres long',
+            ],
+            'max' => [
+                1 => 50,
+            ],
+            'min' => [
+                1 => 10,
+            ],
+            'groups' => [
+                1 => [
+                    'Default',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+    ],
+    []
+); }];

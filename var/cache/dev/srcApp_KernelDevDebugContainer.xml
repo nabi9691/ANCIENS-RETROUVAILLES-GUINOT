@@ -659,6 +659,9 @@
     <service id="App\Form\AdminsType" class="App\Form\AdminsType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\ContactsSearchType" class="App\Form\ContactsSearchType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\ContactsType" class="App\Form\ContactsType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -666,6 +669,9 @@
       <tag name="form.type"/>
     </service>
     <service id="App\Form\MessagesType" class="App\Form\MessagesType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\PropertySearchType" class="App\Form\PropertySearchType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\RecherchesType" class="App\Form\RecherchesType" autowire="true" autoconfigure="true">
@@ -1141,9 +1147,11 @@
       </argument>
       <argument type="collection">
         <argument>App\Form\AdminsType</argument>
+        <argument>App\Form\ContactsSearchType</argument>
         <argument>App\Form\ContactsType</argument>
         <argument>App\Form\MediasType</argument>
         <argument>App\Form\MessagesType</argument>
+        <argument>App\Form\PropertySearchType</argument>
         <argument>App\Form\RecherchesType</argument>
         <argument>App\Form\RegistrationFormEditType</argument>
         <argument>App\Form\RegistrationFormType</argument>
@@ -1483,7 +1491,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.CCRwjpk"/>
+      <argument type="service" id=".service_locator.U4bR_eo"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -5940,12 +5948,16 @@
     <service id=".abstract.instanceof.App\DataFixtures\MessagesFixtures" class="App\DataFixtures\MessagesFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\AdminsType" class="App\Form\AdminsType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\AdminsType" class="App\Form\AdminsType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ContactsSearchType" class="App\Form\ContactsSearchType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ContactsSearchType" class="App\Form\ContactsSearchType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ContactsType" class="App\Form\ContactsType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ContactsType" class="App\Form\ContactsType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\MediasType" class="App\Form\MediasType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\MediasType" class="App\Form\MediasType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\MessagesType" class="App\Form\MessagesType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\MessagesType" class="App\Form\MessagesType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PropertySearchType" class="App\Form\PropertySearchType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\PropertySearchType" class="App\Form\PropertySearchType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RecherchesType" class="App\Form\RecherchesType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RecherchesType" class="App\Form\RecherchesType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormEditType" class="App\Form\RegistrationFormEditType" autowire="true" abstract="true"/>
@@ -6467,13 +6479,15 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.CCRwjpk" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.U4bR_eo" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\AdminsType" type="service_closure" id="App\Form\AdminsType"/>
+        <argument key="App\Form\ContactsSearchType" type="service_closure" id="App\Form\ContactsSearchType"/>
         <argument key="App\Form\ContactsType" type="service_closure" id="App\Form\ContactsType"/>
         <argument key="App\Form\MediasType" type="service_closure" id="App\Form\MediasType"/>
         <argument key="App\Form\MessagesType" type="service_closure" id="App\Form\MessagesType"/>
+        <argument key="App\Form\PropertySearchType" type="service_closure" id="App\Form\PropertySearchType"/>
         <argument key="App\Form\RecherchesType" type="service_closure" id="App\Form\RecherchesType"/>
         <argument key="App\Form\RegistrationFormEditType" type="service_closure" id="App\Form\RegistrationFormEditType"/>
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
@@ -7389,7 +7403,7 @@
     <service id="Psr\Log\LoggerInterface $securityLogger" alias="monolog.logger.security"/>
     <service id="Symfony\Component\String\Slugger\SluggerInterface" alias="slugger"/>
     <service id=".service_locator.tHpW6v3" alias=".service_locator.Y7gDuDN" public="false"/>
-    <service id=".service_locator.WWmZ2ps" alias=".service_locator.CCRwjpk" public="false"/>
+    <service id=".service_locator.VJ1z5BS" alias=".service_locator.U4bR_eo" public="false"/>
     <service id="validator" alias="debug.validator" public="true"/>
     <service id="translator.data_collector.inner" alias="translator.default" public="false"/>
     <service id="event_dispatcher" alias="debug.event_dispatcher" public="true"/>

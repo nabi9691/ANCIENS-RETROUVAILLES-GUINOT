@@ -67,6 +67,11 @@ class Messages
      * @ORM\OneToMany(targetEntity=Medias::class, mappedBy="messages")
      */
     private $medias;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Contacts::class, inversedBy="messages")
+     */
+    private $contacts;
     
     public function __construct()
     {
@@ -190,6 +195,18 @@ class Messages
                 $media->setMessages(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getContacts(): ?Contacts
+    {
+        return $this->contacts;
+    }
+
+    public function setContacts(?Contacts $contacts): self
+    {
+        $this->contacts = $contacts;
 
         return $this;
     }

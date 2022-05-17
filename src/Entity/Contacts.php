@@ -3,10 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\ContactsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ContactsRepository::class)
+ * @UniqueEntity("nom")
  */
 class Contacts
 {
@@ -14,18 +21,41 @@ class Contacts
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"messages:api"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     */
+    * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom doit avoir 1 minimum de {{ limit }} characteres long",
+     *      maxMessage = "Votre Nom ne doit pas depasser {{ limit }} characteres")
+     * @Groups({"messages:api"})
+      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+    * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le prenom doit avoir 1 minimum de {{ limit }} characteres long",
+     *      maxMessage = "Votre Prenom ne doit pas depasser {{ limit }} characteres")
+      */
+      private $prenom;
+
+/**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 50,
+     *      minMessage = "Le resumé doit avoir 1 minimum de {{ limit }} characteres long",
+     *      maxMessage = "Votre resumé ne doit pas depasser {{ limit }} characteres")
      */
-    private $prenom;
+    private $resume;
+
 
     /**
      * @ORM\Column(type="date")
@@ -87,6 +117,18 @@ class Contacts
      */
     private $utilisateurs;
 
+    
+    /**
+     * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="contacts")
+     */
+    private $messages;
+
+    public function __construct()
+    {
+        //$this->contactsSearch = new ArrayCollection();
+        //$this->messages = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -112,6 +154,18 @@ class Contacts
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getResume(): ?string
+    {
+        return $this->resume;
+    }
+
+    public function setResume(string $resume): self
+    {
+        $this->resume = $resume;
 
         return $this;
     }
@@ -259,4 +313,45 @@ class Contacts
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, ContactsSearch>
+     */
+    
+    /**
+     * @return Collection<int, Messages>
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Messages $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setContacts($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Messages $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getContacts() === $this) {
+                $message->setContacts(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString() {
+        return $this->nom;
+    }
+
+
+
 }
