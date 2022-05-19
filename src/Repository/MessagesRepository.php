@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Messages;
+use App\Entity\Contacts;
+
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query\Expr\Comparison;
 
 /**
  * @method Messages|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,7 +22,109 @@ class MessagesRepository extends ServiceEntityRepository
         parent::__construct($registry, Messages::class);
     }
 
-    // /**
+    /**
+     * Messages 
+     * @return Messages[] Retourne un tableau d'objets messages 
+    */
+    
+    public function findMessagesLu()
+    {
+        $qb = $this->createQueryBuilder('m');
+        $qb
+            ->select('m.id', 'm.titre', 'm.date', 'm.resume', 'm.status')
+            ->where('m.status =:status ')
+            ->setParameter('status', '1')
+            ->setMaxResults(5)
+            ->orderBy('m.titre', 'ASC');
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @return Messages[] 
+     * Retourne un tableau d'objets d'messages
+    */
+    
+    public function findMessages()
+    {
+        $qb = $this->createQueryBuilder('m');
+        $qb
+
+            ->innerJoin('App\Entity\Contacts',  'c', 'WITH', 'c = m.contacts')
+           // ->select('m.id', 'm.titre', 'm.date', 'm.resume', 'm.status')
+            ->where('m.status =:status ')
+            ->setParameter('status', '1')
+         //   ->setMaxResults(5)
+            ->orderBy('m.titre', 'ASC');
+        return $qb->getQuery()->getResult();
+    }
+    
+    /**
+    * @return Messages[] 
+    * Retourne un tableau d'objets messages
+    */
+    
+    public function findByMessagesOne()
+    {
+        $qb = $this->createQueryBuilder('m');
+        $qb
+
+            ->innerJoin('App\Entity\Contacts',  'c', 'WITH', 'c = m.contacts')
+           // ->select('m.id', 'm.titre', 'm.date', 'm.resume', 'm.status')
+            ->where('m.status =:status ')
+            ->setParameter('status', '1')
+            ->andWhere('c.nom like :nom')
+            ->setParameter('nom', 'Nabi')
+         //   ->setMaxResults(5)
+            ->orderBy('m.titre', 'ASC');
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+    * @return Messages[] 
+    * Retourne un tableau d'objets messages
+    */
+        public function findMessagesOneContacts2()
+    {
+        $qb = $this->createQueryBuilder('m');
+        $qb
+            ->innerJoin('App\Entity\Contacts',  'c', 'WITH', 'c = m.contacts')
+            ->where(
+                    $qb->x()->eq('m.status =:status '),
+                  //  $qb->x()->like('c.nom', 'nabi')
+                    $qb->x()->like('c.nom', ':nom')
+                    ->setParameter('status', '1')
+                    ->setParameter('nom', 'Nabi')
+            )
+            ->orderBy('m.titre', 'ASC');
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @return Messages[] Returns an array of Messages objects
+     * Liste des messages du  Contacts XXXXXXX
+     */
+    public function findMessagesContacts()
+    {
+        return $this->createQueryBuilder('m')
+        ->innerJoin('App\Entity\Contacts',  'c', 'WITH', 'c = m.contacts')
+            ->Where('m.contacts = 6')
+            ->getQuery()
+            ->getResult();
+    }
+
+//Comment faire des jointures avec le QueryBuilder ?
+// Depuis le repository d'messages
+public function getMessagesAvecCommentaires()
+{
+  $qb = $this->createQueryBuilder('m')
+             ->leftJoin('m.contacts', 'c')
+             ->addSelect('c');
+  return $qb->getQuery()
+            ->getResult();
+}
+
+// /**
     //  * @return Messages[] Returns an array of Messages objects
     //  */
     /*
@@ -48,3 +153,5 @@ class MessagesRepository extends ServiceEntityRepository
     }
     */
 }
+
+    

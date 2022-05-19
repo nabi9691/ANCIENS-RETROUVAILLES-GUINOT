@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Contacts index
+{% endblock %}
+
+{% block body %}
+   <br><br>
+
+<br><br>
+<div class="container">
+   {{ form_start(form_search) }}
+
+            <div class="form-row align-items-end" >
+                <div class="col">
+                    {#{ form_row(form_search.nom) }#}
+                </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Rechercher</button>
+                </div>
+            </div>
+        </div>
+    {{ form_end(form_search) }}
+</div>
+
+    <h1>Tous les Articles</h1>
+{% if contacts %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Id </th>
+                <th> Nom </th>
+                <th> Prénom </th> 
+              <th> Résumé </th>
+                <th> Date </th>
+                <th> Civilite </th>
+                <th> Adresse </th>
+<th> Villes </th>
+<th> Téléphone </th>
+            <th> Email </th>
+</tr>
+        </thead>
+        <tbody>
+        {% for contacts in contacts %}
+            <tr>
+                <td>{{ contacts.id }}</td>
+                <td>{{ contacts.nom }}</td>
+               <td>{{ contacts.prenom }}</td>
+               <td>{{ contacts.resume }}</td>
+                        <td>{{ contacts.civilite }}</td>
+                <td>{{ contacts.date ? contacts.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ contacts.adresse }}</td>
+                <td>{{ contacts.villes }}</td>
+                <td>{{ contacts.telephone }}</td>
+                <td>{{ contacts.email }}</td>
+                <td>
+                    <a href="{{ path('modifierContacts', {'id': contacts.id }) }}"> MODIFIER |</a>
+                    <a href="{{ path('afficherContacts', {'id': contacts.id}) }}"> AFFICHER |</a>
+                <a href="{{ path('supprimerContacts', {'id': contacts.id}) }}"> SUPPRIMER |</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun contacts pour le moment !</td>
+            </tr>
+        {% endfor %}
+          {% endif %} 
+        </tbody>
+    </table>
+
+    <a href="{{ path('nouveauContacts') }}">Creation d'un nouveau contact !</a>
+{% endblock %}

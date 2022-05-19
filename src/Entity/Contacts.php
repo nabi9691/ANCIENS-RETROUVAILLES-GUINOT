@@ -56,7 +56,6 @@ class Contacts
      */
     private $resume;
 
-
     /**
      * @ORM\Column(type="date")
      */

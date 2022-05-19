@@ -3,7 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Contacts;
-//use App\Entity\Utilisateurs;
+use App\Entity\Utilisateurs;
 
 use Faker; 
 use Faker\Factory;
@@ -52,7 +52,6 @@ $email = $faker->email;
                                 ->setStatus($status[0]);
                                 
                                 
-                                    
             $manager->persist($contacts);
     
     $manager->flush();  
